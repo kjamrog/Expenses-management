@@ -1,0 +1,9 @@
+<div *ngIf="logged">
+  <button mat-button (click)="logout()">Wyloguj</button>
+</div>
+
+<div *ngIf="!logged">
+  <button mat-button (click)="goToLogin()">Logowanie</button>
+  <button mat-button (click)="goToRegistration()">Rejestracja</button>
+</div>
+

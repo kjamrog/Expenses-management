@@ -1,0 +1,17 @@
+<div class="loginForm" fxLayout="column" fxFlexAlign="center">
+  <mat-form-field>
+    <input matInput [(ngModel)]="username" placeholder="Nazwa użytkownika">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" [(ngModel)]="password" placeholder="Hasło">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="registration">
+    <input matInput type="password" [(ngModel)]="repeatPassword" placeholder="Powtórz hasło">
+  </mat-form-field>
+
+  <button *ngIf="!registration" mat-button (click)="login()">Zaloguj się</button>
+  <button *ngIf="registration" mat-button (click)="register()">Zarejestruj się</button>
+
+</div>

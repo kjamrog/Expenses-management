@@ -1,0 +1,8 @@
+home works!
+<button mat-button (click)="test()">TEST</button>
+
+<div class="collectionsContainer">
+    <mat-tab-group>
+      <mat-tab *ngFor="let collection of collections" label="{{collection.name}}">Collection {{collection.name}} expenses</mat-tab>
+    </mat-tab-group>
+</div>
