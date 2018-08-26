@@ -7,10 +7,10 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule,
-  MatFormFieldModule, MatInputModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
+  MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule,
   MatOptionModule,
-  MatSelectModule, MatTabsModule,
+  MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -21,6 +21,8 @@ import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import {ResponseCheckingInterceptor} from './interceptors/responseChecking.interceptor';
 import { HeaderControlsComponent } from './header-controls/header-controls.component';
+import { AddCollectionDialogComponent } from './dialogs/add-collection-dialog/add-collection-dialog.component';
+import { ExpenseAddingDialogComponent } from './dialogs/expense-adding-dialog/expense-adding-dialog.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [LoginGuard]},
@@ -34,7 +36,9 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HeaderControlsComponent
+    HeaderControlsComponent,
+    AddCollectionDialogComponent,
+    ExpenseAddingDialogComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -49,8 +53,17 @@ const routes: Routes = [
     MatButtonModule,
     FlexLayoutModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatTableModule,
+    MatCardModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
+  entryComponents: [AddCollectionDialogComponent, ExpenseAddingDialogComponent],
   providers: [AuthService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ResponseCheckingInterceptor, multi: true}

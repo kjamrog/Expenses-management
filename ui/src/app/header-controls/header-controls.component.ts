@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {AuthService, User} from '../services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,17 +9,28 @@ import {Router} from '@angular/router';
 })
 export class HeaderControlsComponent implements OnInit {
   logged = false;
+  currentUser: User;
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.loginChange.subscribe(logged => {
       this.logged = logged;
+      if(logged) {
+        this.loadCurrentUser();
+      }
     });
   }
 
   ngOnInit() {
     if(localStorage.getItem('token')){
       this.logged = true;
+      this.loadCurrentUser();
     }
+  }
+
+  loadCurrentUser(){
+    this.authService.getCurrentUser().subscribe(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   logout() {

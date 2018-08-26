@@ -1,8 +1,13 @@
 home works!
-<button mat-button (click)="test()">TEST</button>
-
-<div class="collectionsContainer">
-    <mat-tab-group>
-      <mat-tab *ngFor="let collection of collections" label="{{collection.name}}">Collection {{collection.name}} expenses</mat-tab>
-    </mat-tab-group>
+<div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-raised-button class="collectionAddingButton" (click)="openCollectionAdding()">Dodaj kolekcję</button>
+  <button *ngIf="currentCollection" mat-fab color="primary" class="expenseAddingButton" (click)="openExpenseAdding()"><mat-icon>add</mat-icon></button>
 </div>
+
+<div *ngIf="collections && collections.length > 0" class="collectionsContainer">
+  <mat-tab-group [selectedIndex]="currentCollectionIndex">
+    <mat-tab *ngFor="let collection of collections" label="{{collection.name}}">Collection {{collection.name}} expenses</mat-tab>
+  </mat-tab-group>
+</div>
+
+

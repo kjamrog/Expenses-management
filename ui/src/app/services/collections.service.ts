@@ -10,6 +10,13 @@ export interface Collection {
   owner: User;
 }
 
+export interface Expense {
+  id: number;
+  description: string;
+  value: number;
+  date: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +30,15 @@ export class CollectionsService {
 
   addCollection(name: string){
     return this.http.post(API.COLLECTIONS, {name: name}) as Observable<Collection>;
+  }
+
+  collectionExists(name: string){
+    return this.http.get(API.COLLECTION_EXISTS(name)) as Observable<boolean>;
+  }
+
+  addExpense(expense: Expense, collection: Collection){
+    console.log(expense);
+    return this.http.post(API.EXPENSES(collection.id), expense) as Observable<Expense>;
   }
 
 }

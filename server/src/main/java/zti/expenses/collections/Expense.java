@@ -1,10 +1,14 @@
 package zti.expenses.collections;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
-import java.time.LocalDate;
 
 @Entity(name="expenses")
 public class Expense {
@@ -15,7 +19,9 @@ public class Expense {
     private String description;
 
     @Column(nullable = false)
-    private LocalDate date;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Calendar date;
 
     @Column(nullable = false)
     private double value;
@@ -26,6 +32,7 @@ public class Expense {
 
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Collection collection;
 
     protected Expense() { }
@@ -66,5 +73,21 @@ public class Expense {
 
     public void setCollection(Collection collection) {
         this.collection = collection;
+    }
+
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

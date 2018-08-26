@@ -9,4 +9,8 @@ public interface CollectionRepository extends JpaRepository<Collection, Long> {
 
     List<Collection> findCollectionsByOwner(ApplicationUser owner);
 
+    Collection findCollectionByNameAndOwner(String name, ApplicationUser owner);
+
+    Collection findCollectionById(long id);
+
 }

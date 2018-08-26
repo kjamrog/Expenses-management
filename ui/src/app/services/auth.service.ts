@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {API} from '../routes';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
@@ -35,6 +35,10 @@ export class AuthService {
 
   test(){
     return this.http.get(API.TEST);
+  }
+
+  getCurrentUser(){
+    return this.http.get(API.CURRENT_USER) as Observable<User>;
   }
 
   logout() {

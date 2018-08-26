@@ -1,0 +1,14 @@
+<div class="content">
+  <div mat-dialog-content>
+    Podaj nazwę dla nowej kolekcji:
+    <mat-form-field>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions fxLayoutAlign="center">
+    <button mat-button (click)="close()">Anuluj</button>
+    <button mat-button color="primary" (click)="addCollection()" cdkFocusInitial>Dodaj</button>
+  </div>
+</div>
+
